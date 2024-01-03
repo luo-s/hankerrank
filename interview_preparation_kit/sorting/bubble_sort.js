@@ -9,6 +9,8 @@ Last Element: lastElement, where  is the last element in the sorted array.
 
 // https://www.hackerrank.com/challenges/ctci-bubble-sort/problem?isFullScreen=true&h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=sorting
 
+// time complexity: O(n^2)
+// space complexity: O(1)
 function countSwaps(a) {
   let count = 0;
   for (let i = 0; i < a.length; i++) {
