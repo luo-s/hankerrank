@@ -8,7 +8,7 @@ s contains only lowercase letters in the range ascii[a-z].
 // https://www.hackerrank.com/challenges/sherlock-and-anagrams/problem?isFullScreen=true&h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=dictionaries-hashmaps
 
 // brute force
-// time complexity: O(n^3)
+// time complexity: O(n^4)
 // space complexity: O(n)
 function sherlockAndAnagrams(s) {
   function isAnagram(str1, str2) {
@@ -32,6 +32,36 @@ function sherlockAndAnagrams(s) {
           count++;
         }
       }
+    }
+  }
+  return count;
+}
+
+// optimized solution
+// time complexity: O(n^2)
+// space complexity: O(n)
+function sherlockAndAnagrams(s) {
+  // function to generate a unique key for each substring
+  var generateKey = (str) => {
+    const key = new Array(26).fill(0);
+    for (let char of str) {
+      key[char.charCodeAt(0) - "a".charCodeAt(0)]++;
+    }
+    return key.join("");
+  };
+  const n = s.length;
+  const map = new Map(); // map to store the frequency of each substring
+  let count = 0;
+  for (let i = 0; i < n; i++) {
+    let currSubstring = "";
+    for (let j = i; j < n; j++) {
+      currSubstring += s[j];
+      // generate a unique key for each substring
+      const key = generateKey(currSubstring);
+      // update map
+      map.set(key, (map.get(key) || 0) + 1);
+      // update count
+      count += map.get(key) - 1;
     }
   }
   return count;
