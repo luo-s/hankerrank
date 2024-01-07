@@ -42,3 +42,40 @@ function substrCount(n, s) {
   }
   return count;
 }
+
+// optimized solution
+// time complexity: O(n^2)
+// space complexity: O(n)
+function substrCount(n, s) {
+  let count = 0;
+  for (let i = 0; i < n; i++) {
+    // case 1: single character
+    count++;
+    // case 2: all characters are the same
+    let left = i - 1,
+      right = i + 1;
+    let repeat = i + 1;
+    while (repeat < n && s[repeat] === s[i]) {
+      count++;
+      repeat++;
+    }
+    // case 3: middle character is different
+    let c = s[left];
+    while (
+      left >= 0 &&
+      right < n &&
+      s[left] === s[right] &&
+      s[left] !== s[i] &&
+      s[left] === c
+    ) {
+      count++;
+      console.log(s.substring(left, right + 1), i, left, right, count);
+      left--;
+      right++;
+    }
+  }
+  return count;
+}
+
+// console.log(substrCount(5, "asasd")); // 7
+console.log(substrCount(7, "abcbaba")); // 10
