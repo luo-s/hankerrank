@@ -15,10 +15,8 @@ constructed such that it is a child of both?
 function commonChild(s1, s2) {
   const m = s1.length;
   const n = s2.length;
-
   // Create a 2D array to store the length of common subsequences
   const dp = Array.from({ length: m + 1 }, () => Array(n + 1).fill(0));
-
   // Fill the dp array using bottom-up dynamic programming
   for (let i = 1; i <= m; i++) {
     for (let j = 1; j <= n; j++) {
@@ -29,7 +27,6 @@ function commonChild(s1, s2) {
       }
     }
   }
-
   // The length of the LCS is stored in dp[m][n]
   return dp[m][n];
 }
