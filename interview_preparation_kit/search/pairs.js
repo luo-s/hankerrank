@@ -41,3 +41,28 @@ function pairs(k, arr) {
   }
   return count;
 }
+
+// sort and binary search
+// time complexity O(nlogn)
+// space complexity O(1)
+function pairs(k, arr) {
+  arr.sort((a, b) => a - b);
+  let count = 0;
+  for (let i = 0; i < arr.length; i++) {
+    const target = arr[i] + k;
+    let left = i + 1,
+      right = arr.length - 1;
+    while (left <= right) {
+      const mid = Math.floor((left + right) / 2);
+      if (arr[mid] === target) {
+        count++;
+        break;
+      } else if (arr[mid] < target) {
+        left = mid + 1;
+      } else {
+        right = mid - 1;
+      }
+    }
+  }
+  return count;
+}
