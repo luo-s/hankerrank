@@ -24,25 +24,6 @@ function countTriplets(arr, r) {
 }
 
 // optimized solution
-// time complexity: O(n^3)
-// space complexity: O(n)
-function countTriplets(arr, r) {
-  let count = 0;
-  let tracker = [];
-  for (let i = 0; i < arr.length - 1; i++) {
-    for (let j = i + 1; j < arr.length; j++) {
-      if (arr[i] * r === arr[j]) {
-        for (let pair of tracker) {
-          if (i === pair[1]) count++;
-        }
-        tracker.push([i, j]);
-      }
-    }
-  }
-  return count;
-}
-
-// optimized solution
 // time complexity: O(n)
 // space complexity: O(n)
 function countTriplets(arr, r) {
@@ -52,7 +33,7 @@ function countTriplets(arr, r) {
   let count = 0;
 
   for (let i = 0; i < n; i++) {
-    // check end element first to avoid double counting
+    // check end element first to avoid double counting (when arr[i] = 1)
     // Check if arr[i] is the end of a triplet
     if (map2.has(arr[i])) {
       count += map2.get(arr[i]);
