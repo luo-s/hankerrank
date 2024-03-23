@@ -52,24 +52,20 @@ function countTriplets(arr, r) {
   let count = 0;
 
   for (let i = 0; i < n; i++) {
+    // check end element first to avoid double counting
     // Check if arr[i] is the end of a triplet
     if (map2.has(arr[i])) {
       count += map2.get(arr[i]);
     }
 
-    // Check if arr[i] is the middle of a triplet
+    // if arr[i] is the middle of a triplet
     if (map1.has(arr[i])) {
+      // update the count of potential third elements in map2
       map2.set(arr[i] * r, (map2.get(arr[i] * r) || 0) + map1.get(arr[i]));
     }
 
-    // Increment the count of potential second elements
+    // update the count of potential second elements in map1
     map1.set(arr[i] * r, (map1.get(arr[i] * r) || 0) + 1);
-    console.log(map1, map2, count);
   }
-
   return count;
 }
-
-console.log(countTriplets([1, 2, 2, 4], 2)); // 2
-console.log(countTriplets([1, 3, 9, 9, 27, 81], 3)); // 6
-console.log(countTriplets([1, 5, 5, 25, 125], 5)); // 4
