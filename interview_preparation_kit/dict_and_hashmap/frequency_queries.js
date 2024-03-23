@@ -24,7 +24,7 @@ function freqQuery(queries) {
       }
     } else if (op === 3) {
       let found = false;
-      for (let [key, value] of map.entries()) {
+      for (let [key, value] of map) {
         if (value === val) {
           result.push(1);
           found = true;
